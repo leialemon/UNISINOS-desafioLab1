@@ -69,9 +69,11 @@ public class Loja {
         return """
                 Informações da Loja
                 Nome: %s
+                Endereço: %s
+                Data de Fundação: %s
                 Quantidade de funcionários: %d
-                Salário base dos funcionários: %.2f
-                """.formatted(getNome(), getQuantidadeFuncionarios(), getSalarioBaseFuncionario());
+                Salário base dos funcionários: R$ %.2f
+                """.formatted(getNome(), getEndereco().toString(), getDataFundacao().toString(),getQuantidadeFuncionarios(), getSalarioBaseFuncionario());
     }
 
     public double gastosComSalario(){

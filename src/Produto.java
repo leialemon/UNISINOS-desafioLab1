@@ -56,8 +56,9 @@ public class Produto {
         return """
                 Informações do Produto
                 Nome: %s
-                Preço: %.2f
-                """.formatted(getNome(), getPreco());
+                Preço: R$ %.2f
+                Data de validade: %s
+                """.formatted(getNome(), getPreco(), getDataValidade().toString());
     }
 
 
