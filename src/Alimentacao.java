@@ -4,8 +4,8 @@ public class Alimentacao extends Loja{
 
     private Data dataAlvara;
 
-    public Alimentacao(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, Data dataAlvara){
-        super(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao);
+    public Alimentacao(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, Data dataAlvara, int tamanhoEstoque){
+        super(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, tamanhoEstoque);
         this.dataAlvara = dataAlvara;
     }
 
@@ -26,8 +26,9 @@ public class Alimentacao extends Loja{
                 Data de Fundação: %s
                 Quantidade de funcionários: %d
                 Salário base dos funcionários: R$ %.2f
+                Tamanho do estoque: %d
                 Data de expedição do alvará de funcionamento: %s
-                """.formatted(getNome(), getEndereco().toString(), getDataFundacao().toString(),getQuantidadeFuncionarios(), getSalarioBaseFuncionario(), getDataAlvara().toString());
+                """.formatted(getNome(), getEndereco().toString(), getDataFundacao().toString(),getQuantidadeFuncionarios(), getSalarioBaseFuncionario(), getEstoqueProdutos().length,getDataAlvara().toString());
 
     }
 }

@@ -7,21 +7,24 @@ public class Loja {
     private double salarioBaseFuncionario;
     private Endereco endereco;
     private Data dataFundacao;
+    private Produto[] estoqueProdutos;
 
-    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao){
+    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int tamanhoEstoque){
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[tamanhoEstoque];
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao){
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int tamanhoEstoque){
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
         this.salarioBaseFuncionario = -1;
+        this.estoqueProdutos = new Produto[tamanhoEstoque];
     }
 
     public String getNome() {
@@ -64,6 +67,14 @@ public class Loja {
         this.dataFundacao = dataFundacao;
     }
 
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
+    }
+
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
+    }
+
     @Override
     public String toString(){
         return """
@@ -73,7 +84,8 @@ public class Loja {
                 Data de Fundação: %s
                 Quantidade de funcionários: %d
                 Salário base dos funcionários: R$ %.2f
-                """.formatted(getNome(), getEndereco().toString(), getDataFundacao().toString(),getQuantidadeFuncionarios(), getSalarioBaseFuncionario());
+                Tamanho do estoque: %d
+                """.formatted(getNome(), getEndereco().toString(), getDataFundacao().toString(),getQuantidadeFuncionarios(), getSalarioBaseFuncionario(), getEstoqueProdutos().length);
     }
 
     public double gastosComSalario(){
@@ -92,5 +104,35 @@ public class Loja {
             return 'M';
         }
         return 'G';
+    }
+
+    public void imprimeProdutos(){
+        for(Produto p : getEstoqueProdutos()){
+            System.out.println(p.toString());
+        }
+    }
+
+    public boolean insereProduto(Produto produto){
+        Produto[] estoque = getEstoqueProdutos();
+        for (int x = 0; x < estoque.length; x++){
+            if(estoque[x] == null){
+                estoque[x] = produto;
+                setEstoqueProdutos(estoque);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeProduto(String nomeProduto){
+        Produto[] estoque = getEstoqueProdutos();
+        for (int x = 0; x < estoque.length; x++){
+            if(estoque[x].getNome().equals(nomeProduto)){
+                estoque[x] = null;
+                setEstoqueProdutos(estoque);
+                return true;
+            }
+        }
+        return false;
     }
 }
